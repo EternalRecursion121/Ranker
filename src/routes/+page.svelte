@@ -1,18 +1,24 @@
 <script>
     import Entry from "$lib/Entry.svelte";
     import Compare from "$lib/Compare.svelte";
+    import Results from "$lib/Results.svelte";
 
     let items = [];
     let rankingStarted = false;
     let rankingFinished = false;
+    let rankedItems;
     let comparer;
     let a, b;
 
     async function rank(a) {
+        if (a.length <= 1) {
+            return a;
+        }
+
         console.log(1, a);
         let median_pos = Math.floor(a.length / 2);
-        let l, r;
-        l, r = a.slice(0, median_pos), a.slice(median_pos, a.length);
+        let l = a.slice(0, median_pos);
+        let r = a.slice(median_pos, a.length);
 
         l = await rank(l);
         r = await rank(r);
@@ -49,35 +55,39 @@
     }
 
     async function compare(c1, c2) {
-        let a = c1;
-        let b = c2;
+        a = c1;
+        b = c2;
         return new Promise((resolve) => {
             let result = false;
             // Event listener for comparison result
             const comparisonResultHandler = (event) => {
-                console.log("triggered");
                 const { detail } = event;
                 result = detail;
                 resolve(result);
             };
             // Add event listener
-            comparer.addEventListener('comparisonResult', comparisonResultHandler);
+            comparer.$on("result", comparisonResultHandler);
         });
     }
 
-    function startRanking() {
+    async function startRanking() {
         rankingStarted = true;
-        let rankedItems = rank(items);
+        rankedItems = await rank(items);
+        rankingFinished = true;
     }
+
+    $: console.log(rankingStarted);
 
 
 </script>
 
 <main class="p-4">
     {#if !rankingStarted}
-        <Entry bind:items={items} on:start-ranking={startRanking()}/>
-    {:else}
+        <Entry bind:items={items} on:start-ranking={startRanking}/>
+    {:else if !rankingFinished}
         <Compare {a} {b} bind:this={comparer} on:comparisonResult={({detail}) => console.log(detail)} />
+    {:else}
+        <Results results={rankedItems} />
     {/if}
 </main>
 

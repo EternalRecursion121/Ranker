@@ -18,7 +18,7 @@
 </script>
 
 <div class="container mx-auto">
-    <h1 class="text-2xl font-bold mb-4">Ranker</h1>
+    <h1 class="text-4xl text-indigo-700 font-bold mb-4">Ranker</h1>
     <div class="flex mb-4">
         <input
             type="text"
@@ -32,7 +32,7 @@
             }}
         />
         <button
-            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r"
+            class="bg-indigo-600 hover:bg-indigo-800 text-white font-bold py-2 px-4 rounded-r"
             on:click={addNewItem}
         >
             Add
