@@ -1,22 +1,14 @@
-# create-svelte
+# Ranker
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+Create a ranking for any list using only pairwise comparisons (https://pairwiseranker.vercel.app/), using the merge sort algorithm.
 
-## Creating a project
+## Usage
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+Enter a list of items you'd like to rank to get started. Choose between items using the buttons or the 1 and 2 keys. Make any final adjustments if needed by dragging and dropping the order at the end.
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Install dependencies with `npm install` (or `pnpm install` or `yarn`), and start a development server:
 
 ```bash
 npm run dev
@@ -24,15 +16,3 @@ npm run dev
 # or start the server and open the app in a new browser tab
 npm run dev -- --open
 ```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
