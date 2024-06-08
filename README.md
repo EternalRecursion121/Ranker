@@ -1,6 +1,6 @@
 # Ranker
 
-Create a ranking for any list using only pairwise comparisons (https://pairwiseranker.vercel.app/), using the merge sort algorithm.
+Create a ranking for any list using only pairwise comparisons (https://pairwiseranker.vercel.app/).
 
 ## Usage
 
